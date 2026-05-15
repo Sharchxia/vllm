@@ -3,12 +3,10 @@
 
 numba == 0.65.0 # Required for N-gram speculative decoding
 
-# Dependencies for NVIDIA GPUs on Jetson JP6 / CUDA 12.6 / Python 3.10 / aarch64
-torch==2.8.0
-torchaudio==2.8.0
-torchvision==0.23.0 # Required for phi3v processor. Must match torch version.
-
-# Triton is not available as a compatible aarch64 Python 3.10 wheel here.
+# Installed separately from Jetson CUDA 12.6 index:
+# torch==2.8.0
+# torchaudio==2.8.0
+# torchvision==0.23.0
 # triton==3.4.0
 
 # FlashInfer is optional and currently not matched to Python 3.10 Jetson wheel.
@@ -17,13 +15,10 @@ torchvision==0.23.0 # Required for phi3v processor. Must match torch version.
 
 apache-tvm-ffi==0.1.9
 
-# These may also pull Triton or x86-only dependencies.
 # Disable first for Jetson baseline build.
 # tilelang==0.1.9
 # nvidia-cutlass-dsl>=4.4.2
 # quack-kernels>=0.3.3
 
 nvidia-cudnn-frontend>=1.13.0,<1.19.0
-
-# Required for faster safetensors model loading
 fastsafetensors >= 0.2.2
