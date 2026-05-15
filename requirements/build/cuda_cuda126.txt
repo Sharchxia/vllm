@@ -1,0 +1,15 @@
+# Should be mirrored in pyproject.toml
+cmake>=3.26.1
+ninja
+packaging>=24.2
+setuptools>=77.0.3,<81.0.0
+setuptools-scm>=8
+
+# Jetson JP6 / CUDA 12.6 compatible PyTorch
+https://pypi.jetson-ai-lab.io/jp6/cu126/+f/5cf/9ed17e35cb752/torch-2.8.0-cp310-cp310-linux_aarch64.whl
+
+wheel
+jinja2>=3.1.6
+regex
+build
+protobuf >= 5.29.6, !=6.30.*, !=6.31.*, !=6.32.*, !=6.33.0.*, !=6.33.1.*, !=6.33.2.*, !=6.33.3.*, !=6.33.4.*
