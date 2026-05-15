@@ -3,33 +3,22 @@
 
 numba == 0.65.0 # Required for N-gram speculative decoding
 
-# Jetson JP6 / CUDA 12.6 / Python 3.10 / aarch64
-# Use the Jetson CUDA 12.6 index to avoid installing generic CUDA 13 PyTorch wheels.
---extra-index-url https://pypi.jetson-ai-lab.io/jp6/cu126
-
-# Dependencies for NVIDIA GPUs
+# Dependencies for NVIDIA GPUs on Jetson JP6 / CUDA 12.6 / Python 3.10 / aarch64
 torch==2.8.0
 torchaudio==2.8.0
 torchvision==0.23.0 # Required for phi3v processor. Must match torch version.
-
-# Triton is not available as a compatible Python 3.10 aarch64 wheel here.
-# Do not pin triton on Jetson unless you have a known compatible wheel.
-# triton==3.4.0
+triton==3.4.0
 
 # FlashInfer is optional.
-# No compatible Jetson JP6 / CUDA 12.6 / Python 3.10 FlashInfer wheel is available from this index.
 # flashinfer-python==0.6.8.post1
 # flashinfer-cubin==0.6.8.post1
 
 apache-tvm-ffi==0.1.9
 tilelang==0.1.9
 
-# Cap nvidia-cudnn-frontend due to breaking changes in 1.19.0
 nvidia-cudnn-frontend>=1.13.0,<1.19.0
 
-# Required for faster safetensors model loading
 fastsafetensors >= 0.2.2
 
-# QuACK and Cutlass DSL for FA4
 nvidia-cutlass-dsl>=4.4.2
 quack-kernels>=0.3.3
