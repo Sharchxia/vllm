@@ -5,8 +5,9 @@ packaging>=24.2
 setuptools>=77.0.3,<81.0.0
 setuptools-scm>=8
 
-# Jetson JP6 / CUDA 12.6 compatible PyTorch
-https://pypi.jetson-ai-lab.io/jp6/cu126/+f/5cf/9ed17e35cb752/torch-2.8.0-cp310-cp310-linux_aarch64.whl
+# Jetson JP6 / CUDA 12.6 / Python 3.10 / aarch64
+--extra-index-url https://pypi.jetson-ai-lab.io/jp6/cu126
+torch==2.8.0
 
 wheel
 jinja2>=3.1.6

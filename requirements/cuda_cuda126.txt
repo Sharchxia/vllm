@@ -3,28 +3,26 @@
 
 numba == 0.65.0 # Required for N-gram speculative decoding
 
-# Dependencies for NVIDIA GPUs on Jetson JP6 / CUDA 12.6 / Python 3.10 / aarch64.
-# Do NOT use generic PyPI torch here: it may install CUDA 13 wheels such as torch 2.11.0+cu130,
-# which fails on Jetson L4T R36.4.x / CUDA driver 12.6.
-# Source index: https://pypi.jetson-ai-lab.io/jp6/cu126
-https://pypi.jetson-ai-lab.io/jp6/cu126/+f/62a/1beee9f2f1470/torch-2.8.0-cp310-cp310-linux_aarch64.whl
-https://pypi.jetson-ai-lab.io/jp6/cu126/+f/907/c4c1933789645/torchvision-0.23.0-cp310-cp310-linux_aarch64.whl
-https://pypi.jetson-ai-lab.io/jp6/cu126/+f/81a/775c8af36ac85/torchaudio-2.8.0-cp310-cp310-linux_aarch64.whl
-https://pypi.jetson-ai-lab.io/jp6/cu126/+f/9da/4bcb8e8f0eba0/triton-3.4.0-cp310-cp310-linux_aarch64.whl
+# Jetson JP6 / CUDA 12.6 / Python 3.10 / aarch64
+# Use the Jetson CUDA 12.6 index to avoid installing generic CUDA 13 PyTorch wheels.
+--extra-index-url https://pypi.jetson-ai-lab.io/jp6/cu126
 
-# FlashInfer should be updated together with the Dockerfile.
-# NOTE: The original flashinfer-python==0.6.8.post1 / flashinfer-cubin==0.6.8.post1 pins
-# may pull non-Jetson or newer-CUDA artifacts. Keep them only if you have verified they work
-# with your JP6/CUDA 12.6 aarch64 image. For a minimal vLLM bring-up on Jetson, install
-# vLLM first without these two pins, then add them back only after torch.cuda.is_available() is True.
+# Dependencies for NVIDIA GPUs
+torch==2.8.0
+torchaudio==2.8.0
+torchvision==0.23.0 # Required for phi3v processor. Must match torch version.
+triton==3.4.0
+
+# FlashInfer is optional.
+# No compatible Jetson JP6 / CUDA 12.6 / Python 3.10 FlashInfer wheel is available from this index.
 # flashinfer-python==0.6.8.post1
 # flashinfer-cubin==0.6.8.post1
 
 apache-tvm-ffi==0.1.9
 tilelang==0.1.9
 
-# Cap nvidia-cudnn-frontend due to breaking changes in 1.19.0.
-# The JP6/CUDA 12.6 index provides nvidia-cudnn-frontend 1.13.0 for cp310/aarch64.
+# Cap nvidia-cudnn-frontend (transitive dep of flashinfer) due to
+# breaking changes in 1.19.0
 nvidia-cudnn-frontend>=1.13.0,<1.19.0
 
 # Required for faster safetensors model loading
